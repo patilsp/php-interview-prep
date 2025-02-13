@@ -46,6 +46,6 @@ This repository contains PHP coding questions and their solutions, ranging from 
 Feel free to add more PHP interview questions and improve existing solutions. Pull requests are welcome!
 
 ## 📌 Author
-- **Your Name** (Replace with your name)
+- **Your Name** (Santosh Patil)
 
 Happy Coding! 🚀
