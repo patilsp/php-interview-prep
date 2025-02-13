@@ -1,0 +1,633 @@
+
+What is a class?
+A class is a template for an object, a user-defined datatype that contains variables, properties, and methods.
+class Person{
+    public $name;
+    public $age;
+    function __construct($name, $age){
+        $this->name = $name;
+        $this->age = $age;
+    }
+    function getUserDetails(){
+        return "Hi, My Name is ".$this->name." and I'm ". $this->age ." old ";
+    }
+}
+//To create php object we have to use a new operator. 
+
+$obj = new Person("Ajay", 23);
+echo $obj->getUserDetails();
+
+//Output:
+Hi, My Name is Ajay and I'm 23 old 
+
+
+What is an object?
+Objects are created from Classes, is an instance of a class that is created dynamically.
+
+Object in programming is similar to real word object. Every programming object has some properties and behaviors.
+
+You can create object of class with the help of new keyword
+
+
+//Create an object of MyClass 
+
+$obj = new MyClass();
+
+OR
+
+$obj = new MyClass;
+
+What is Constructor and Destructor?
+Constructor:
+Constructor is a special type of function which will be called automatically whenever there is any object created from a class.
+
+class myClass{
+    function __construct(){
+	// Define logic in constructor
+    }
+}
+
+Destructor:
+Destructor is a special type of function which will be called automatically whenever any object is deleted or goes out of scope.
+
+function __destruct(){
+	// this is destructor 
+    }
+
+    Types of constructors:
+Default constructor
+A constructor without any parameters is called a default constructor.
+
+Parameterized constructor
+A constructor with at least one parameter is called a parametrized constructor.
+
+What is Member Variable and Member function?
+Member Variable − These are the variables defined inside a class. This data will be invisible to the outside of the class and can be accessed via member functions.
+These variables are called attribute of the object once an object is created.
+
+Member function − These are the function defined inside a class and are used to access object data.
+
+What is different types of Visibility? OR What are access modifiers?
+Each method and property has its visibility. There are three types of visibility in PHP.
+
+Types of visibility:
+public: Public method or variable can be accessible from anywhere, Means a public method or variable of a class can be called outside of the class or in a subclass.
+protected: A protected method or variable can only be called in that class & it's subclass.
+private: A private method or variable of a class can only be called inside that class only in which it is declared.
+
+What is Encapsulation?
+Wrapping up member variables and methods together into a single unit (i.e. Class) is called Encapsulation.
+Encapsulation is used to hide the values or state of a structured data object inside a class, preventing unauthorized parties' direct access to them.
+
+What is Abstraction?
+Abstraction is a concept in which implementation details are hidden.
+Abstract Class:
+Abstract class are class which contains atleast one or more abstract method.
+Abstract Method:
+Abstract method is a method which is declared, but not defined.
+
+abstract class TV {
+    private $isOn = false;
+    abstract function getBrand();
+    public function turnOnTV() {
+        $this->isOn = true;
+    }
+    public function turnOffTV() {
+        $this->isOn = false;
+    }
+}
+class Panasonic extends TV {
+    public function getBrand(){
+        return "Panasonic";
+    }
+}
+class Sony extends TV {
+    public function getBrand(){
+        return "Sony";
+    }
+}
+
+Explain about polymorphism?
+It is simply "One thing, can use in different forms". Technically, it is the ability to redefine methods for derived classes.
+
+#Example: One Class (Car) can extend two classes (Audi & BMW).
+
+Types of Polymorphism?
+Polymorphism could be static and dynamic both. Overloading is static polymorphism while, overriding is dynamic polymorphism.
+
+Compile time polymorphism (Static) - Method Overloading
+Runtime time polymorphism (Dynamic) - Method Overriding
+Overloading is defining functions/methods that have same signatures with different parameters in the same class.
+Overriding is redefining parent class functions/methods in child class with same signature. So, basically the purpose of overriding is to change the behavior of your parent class method.
+
+
+When to use abstract class and interface in PHP? Explain with real world Example?
+Abstract class:
+Abstract Class is used when you something you know (Concrete Methods) and something which you don't know (Abstract Methods).
+Interface:
+Interface is used when you don't know anything about implementation. (All methods are abstract)
+
+What are Interfaces?
+Interfaces allow you to specify what methods a class should implement.
+
+Interfaces make it easy to use a variety of different classes in the same way. When one or more classes use the same interface, it is referred to as "polymorphism".
+
+Interfaces are declared with the interface keyword:
+
+interface InterfaceName {
+  public function someMethod1();
+  public function someMethod2($name, $color);
+  public function someMethod3() : string;
+}
+
+What is Inheritance?
+Inheritance in OOP = When a class derives from another class.
+
+The child class will inherit all the public and protected properties and methods from the parent class. In addition, it can have its own properties and methods.
+
+An inherited class is defined by using the extends keyword.
+
+class Fruit {
+  public $name;
+  public $color;
+  public function __construct($name, $color) {
+    $this->name = $name;
+    $this->color = $color;
+  }
+  public function intro() {
+    echo "The fruit is {$this->name} and the color is {$this->color}.";
+  }
+}
+
+// Strawberry is inherited from Fruit
+class Strawberry extends Fruit {
+  public function message() {
+    echo "Am I a fruit or a berry? ";
+  }
+}
+$strawberry = new Strawberry("Strawberry", "red");
+$strawberry->message();
+$strawberry->intro();
+
+Class Constants
+Constants cannot be changed once it is declared.
+
+Class constants can be useful if you need to define some constant data within a class.
+
+A class constant is declared inside a class with the const keyword.
+
+class Goodbye {
+  const LEAVING_MESSAGE = "Thank you for visiting W3Schools.com!";
+}
+
+echo Goodbye::LEAVING_MESSAGE;
+
+What is Traits in PHP?
+Traits are a mechanism for code reuse in single inheritance languages such as PHP.
+A Trait is intended to reduce some limitations of single inheritance by enabling a developer to reuse sets of methods freely in several independent classes living in different class hierarchies.
+
+PHP only supports single inheritance: a child class can inherit only from one single parent.
+
+So, what if a class needs to inherit multiple behaviors? OOP traits solve this problem.
+
+Traits are used to declare methods that can be used in multiple classes. Traits can have methods and abstract methods that can be used in multiple classes, and the methods can have any access modifier (public, private, or protected).
+
+Traits are declared with the trait keyword:
+
+trait message1 {
+public function msg1() {
+    echo "OOP is fun! ";
+  }
+}
+
+class Welcome {
+  use message1;
+}
+
+$obj = new Welcome();
+$obj->msg1();
+
+What is Namespaces in PHP?
+Namespaces is used to avoid conflicting definitions and enables more flexibility and organization in your code base.
+
+What are the advantages of object oriented programming?
+Code Resusability: it can be acheived through inheritance and traits
+Modularity: it can be acheived through breaking large code into small modules, Modularity reduces complexity.
+Flexibility: it can be acheived through polymorphism
+Maintainability: it is to maintian code which follow Object Oriented Programming Concepts.
+Security: it can be acheived through Encapsulation
+Testability: it is easy to test.
+
+$x = 'kinjal';
+echo "Length of string is: ".strlen($x);
+echo "<br>Count of word: ".str_word_count($x);
+echo "<br>Reverse the string: ".strrev($x);
+echo "<br>Position of string: ".strpos('Have a nice day!','nice');  //2 argument
+echo "<br>String replace: ".str_replace('good','nice','have a good day!');  //3 argument
+echo "<br>String convert to uppercase: ".strtoupper($x);
+echo "<br>String convert to lowercase: ".strtolower($x);
+echo "<br>convert first character into uppercase: ".ucfirst('good day');
+echo "<br>convert first character into lowercase: ".lcfirst('Good noon');
+echo "<br>convert first character of each word into uppercase: ".ucwords('keep going on!');
+echo "<br>Remove space from left side: ".ltrim("        hi..");
+echo "<br>Remove space from right side: ".rtrim("hello          ");
+echo "<br>Remove both side of space: ".trim("       keep learning       ");
+echo "<br>string encrypted with MD5: ".md5($x);
+echo "<br>Compare both string: ".strcoll('Hello','Hello')."<br>".strcmp('kinjal',$x);
+echo "<br>Return part of string: ".substr('Hello Everyone',2);
+
+array_change_key_case()	Changes all keys in an array to lowercase or uppercase
+array_chunk()	Splits an array into chunks of arrays
+array_column()	Returns the values from a single column in the input array
+array_combine()	Creates an array by using the elements from one "keys" array and one "values" array
+array_count_values()	Counts all the values of an array
+array_diff()	Compare arrays, and returns the differences (compare values only)
+array_diff_assoc()	Compare arrays, and returns the differences (compare keys and values)
+array_diff_key()	Compare arrays, and returns the differences (compare keys only)
+array_diff_uassoc()	Compare arrays, and returns the differences (compare keys and values, using a user-defined key comparison function)
+array_diff_ukey()	Compare arrays, and returns the differences (compare keys only, using a user-defined key comparison function)
+array_fill()	Fills an array with values
+array_fill_keys()	Fills an array with values, specifying keys
+array_filter()	Filters the values of an array using a callback function
+array_flip()	Flips/Exchanges all keys with their associated values in an array
+array_intersect()	Compare arrays, and returns the matches (compare values only)
+array_intersect_assoc()	Compare arrays and returns the matches (compare keys and values)
+array_intersect_key()	Compare arrays, and returns the matches (compare keys only)
+array_intersect_uassoc()	Compare arrays, and returns the matches (compare keys and values, using a user-defined key comparison function)
+array_intersect_ukey()	Compare arrays, and returns the matches (compare keys only, using a user-defined key comparison function)
+
+$servername = "localhost";
+$username = "username";
+$password = "password";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password);
+
+ 
+// Check connection
+
+ if ($conn->connect_error) {
+
+  die("Connection failed: " . $conn->connect_error);
+}
+
+echo "Connected successfully";
+
+
+
+Define Composer.
+Composer is the package manager for the framework. It helps in adding new packages from the huge community into your laravel application
+
+composer requires laravel/passport
+
+What is an artisan?
+Artisan is the command-line tool for Laravel to help the developer build the application. You can enter the below command to get all the available commands:
+php artisan make:controller - Make Controller file
+
+php artisan make:model - Make a Model file
+
+php artisan make:migration - Make Migration file
+
+php artisan make:seeder - Make Seeder file
+
+php artisan make:factory - Make Factory file
+
+php artisan make:policy - Make Policy file
+
+php artisan make:command - Make a new artisan command
+
+
+How to put Laravel applications in maintenance mode?
+Maintenance mode is used to put a maintenance page to customers and under the hood, we can do software updates, bug fixes, etc. Laravel applications can be put into maintenance mode using the below command:
+
+php artisan down
+
+And can put the application again on live using the below command:
+
+php artisan up
+
+What are factories in Laravel?
+Factories are a way to put values in fields of a particular model automatically
+
+How to implement soft delete in Laravel?
+Soft Delete means when any data row is deleted by any means in the database, we are not deleting the data but adding a timestamp of deletion.
+
+We can add soft delete features by adding a trait in the model file like below.
+
+What are the default route files in Laravel?
+Below are the four default route files in the routes folder in Laravel:
+
+web.php - For registering web routes.
+api.php - For registering API routes.
+console.php - For registering closure-based console commands.
+channel.php - For registering all your event broadcasting channels that your application supports.
+
+Facade is a structural design pattern that provides a simplified (but limited) interface to a complex system of classes
+
+10. What are migrations in Laravel?
+In simple, Migrations are used to create database schemas in Laravel. In migration files, we store which table to create, update or delete.
+
+What are seeders in Laravel?
+Seeders in Laravel are used to put data in the database tables automatically.
+
+What is Eloquent in Laravel?
+Eloquent is the ORM used to interact with the database using Model classes. It gives handy methods on class objects to make a query on the database.
+
+What is Middleware and how to create one in Laravel?
+Middleware gives developers the ability to inspect and filter incoming HTTP requests of our application. One such middleware that ships with laravel are the authentication middleware which checks if the user is authenticated and if the user is authenticated it will go further in the application otherwise it will throw the user back to the login screen.
+
+What are queues in Laravel?
+While building any application we face a situation where some tasks take time to process and our page gets loading until that task is finished. One task is sending an email when a user registers, we can send the email to the user as a background task, so our main thread is responsive all the time. Queues are a way to run such tasks in the background
+
+What are facades?
+Facades are a way to register your class and its methods in Laravel Container so they are available in your whole application after getting resolved by Reflection.
+
+REST API
+REST stands for Representational State Transfer and uses HTTP protocol (web protocol) for implementation. These services are lightweight, provide maintainability, scalability, support communication among multiple applications that are developed using different programming languages. They provide means of accessing resources present at server required for the client via the web browser by means of request headers, request body, response body, status codes, 
+
+What are the features of RESTful Web Services?
+Every RESTful web service has the following features:
+
+The service is based on the Client-Server model.
+The service uses HTTP Protocol for fetching data/resources, query execution, or any other functions.
+The medium of communication between the client and server is called “Messaging”.
+Resources are accessible to the service by means of URIs.
+It follows the statelessness concept where the client request and response are not dependent on others and thereby provides total assurance of getting the required data.
+These services also use the concept of caching to minimize the server calls for the same type of repeated requests.
+These services can also use SOAP services as implementation protocol to REST architectural pattern.
+
+5. What is the concept of statelessness in REST?
+The REST architecture is designed in such a way that the client state is not maintained on the server. This is known as statelessness. The context is provided by the client to the server using which the server processes the client’s request. The session on the server is identified by the session identifier sent by the client.
+
+
+What are HTTP Status codes?
+These are the standard codes that refer to the predefined status of the task at the server. Following are the status codes formats available:
+
+1xx - represents informational responses
+2xx - represents successful responses
+3xx - represents redirects
+4xx - represents client errors
+5xx - represents server errors
+
+What are the HTTP Methods?
+HTTP Methods are also known as HTTP Verbs. They form a major portion of uniform interface restriction followed by the REST that specifies what action has to be followed to get the requested resource. Below are some examples of HTTP Methods:
+
+GET: This is used for fetching details from the server and is basically a read-only operation.
+POST: This method is used for the creation of new resources on the server.
+PUT: This method is used to update the old/existing resource on the server or to replace the resource.
+DELETE: This method is used to delete the resource on the server.
+PATCH: This is used for modifying the resource on the server.
+
+
+Can you tell the disadvantages of RESTful web services?
+The disadvantages are:
+
+As the services follow the idea of statelessness, it is not possible to maintain sessions. (Session simulation responsibility lies on the client-side to pass the session id)
+REST does not impose security restrictions inherently. It inherits the security measures of the protocols implementing it. Hence, care must be chosen to implement security measures like integrating SSL/TLS based authentications, etc
+
+
+Differentiate between SOAP and REST?
+SOAP 	                                                            REST
+SOAP - Simple Object Access Protocol 	                        REST - Representational State Transfer
+SOAP is a protocol used to implement web services.	          REST is an architectural design pattern for developing web services
+SOAP cannot use REST as it is a protocol.	                      REST architecture can have SOAP protocol as part of the implementation.
+SOAP specifies standards that are meant to be followed strictly.	    REST defines standards but they need not be strictly followed.
+SOAP client is more tightly coupled to the server which is similar to desktop applications having strict contracts.	      The REST client is more flexible like a browser and does not depend on how the server is developed unless it follows the protocols required for establishing communication.
+SOAP supports only XML transmission between the client and the server.	      REST supports data of multiple formats like XML, JSON, MIME, Text, etc.
+SOAP reads are not cacheable.	                                      REST read requests can be cached.
+SOAP uses service interfaces for exposing the resource logic.	        REST uses URI to expose the resource logic.
+SOAP is slower.	REST is faster.
+Since SOAP is a protocol, it defines its own security measures.	            REST only inherits the security measures based on what protocol it uses for the implementation.
+SOAP is not commonly preferred, but they are used in cases which require stateful data transfer and more reliability.             	REST is commonly preferred by developers these days as it provides more scalability and maintainability.
+
+
+
+
+
+Dependency injection is a procedure where one object supplies the dependencies of another object.
+Dependency Injection is a software design approach that allows avoiding hard-coding dependencies and makes it possible to change the dependencies both at runtime and compile time.
+Constructor Injection.
+Immutable-setter Injection.
+Setter Injection.
+Property Injection.
+
+
+Parse or Syntax Errors
+The first category of errors in PHP are parse errors, also called syntax errors. They simply mean there are one or more incorrect symbols in your script.
+
+Fatal Errors
+In other words, fatal errors are critical errors, Often, the reason for fatal errors is an undefined class, function, or another artifact. If a script tries to use a function that doesn’t exist, PHP doesn’t know what to do and the script must be stopped
+
+Warning Errors
+Warning errors are errors that don’t result in script termination.
+
+Notice Errors
+Notice errors are similar to warnings in that they also don’t halt script execution. You should also think of notice errors as PHP giving you a heads up to something that might become a problem
+
+Enabling error reporting in PHP is dead easy. You simply call a function in your script:
+
+<?php
+error_reporting(E_ALL);
+
+PHP allows the user to modify some of its settings mentioned in php. ini using ini_set().
+
+PHP.ini is a configuration file containing your web server’s PHP settings
+post_max_size
+file_uploads
+upload_max_filesize
+memory_limit
+max_execution_time
+
+
+Htaccess is short for Hypertext Access. It is a configuration file used by apache-based web servers.
+
+Configuration files configure the initial settings of a program, or in this case the server. 
+What can I use .htaccess for?
+There are a lot of possibilities with .htaccess, you can, for example, use it to:
+
+Protect your site with a password.
+Create a custom-made error page.
+Redirect visitors to another page.
+
+
+New version of PHP 
+
+Named Arguments - Named arguments allow developers to label each passed variable without creating a temporary variable.
+
+Constructor Property Promotion - Constructor property promotion is a quality-of-life improvement for developers which reduces the amount of code necessary to create an object with simple constructor properties.
+
+Match Expression
+Match expressions closely resemble switch statements but can often be a better fit. Consider the example of creating an object, the type of which is determined by a string.
+
+Nullsafe Operator
+The nullsafe operator is another quality-of-life improvement implemented in PHP8. When accessing a property multiple levels deep, checking for null values each step down the line is no longer necessary
+
+Union Types - Union Type is a user-defined datatype which is a collection of all variables of different datatypes in the same memory location. 
+add(float|int $no_2)
+
+a.) str_contains()
+Helps you in determining whether the given sub-string is present inside the string.
+
+Example :
+
+str_contains ( string $austin , string $tin ) : bool
+Executes a case-sensitive operations and checks whether the string austin contains the substring tin.
+
+b.) string_starts_with and str_ends_with()
+Using this function you can easily find whether the given sub-string is at the beginning or ending of the string.
+
+Example:
+
+str_starts_with(string $austin, string $au): bool;
+
+
+Lumen is a micro-framework that can be used for creating APIs and lighting-fast microservices that can support various types of Laravel applications.
+
+a=10;
+b=20;
+a=a+b;//a=30 (10+20)    
+b=a-b;//b=10 (30-20)    
+a=a-b;//a=20 (30-10)    
+
+
+
+$temp = $number; 
+    $new = 0; 
+    while (floor($temp)) { 
+        $d = $temp % 10; 
+        $new = $new * 10 + $d; 
+        $temp = $temp/10; 
+    } 
+    if ($new == $number){ 
+        return 1; 
+    }
+    else{
+        return 0;
+    }
+
+
+die() is recommended when you stop PHP script because of an exception. 
+exit() is used when your PHP script require something from the user
+
+one to one
+one to many
+many to many
+
+
+What is called candidate key?
+Candidate key is a single key or a group of multiple keys that uniquely identify rows in a table.
+
+What are PHP magic methods?
+Magic methods are special methods which override PHP's default's action when certain actions are performed on an object
+
+A BLOB is a binary large object that can hold a variable amount of data
+
+In PHP, @ is used for suppressing error messages.
+If any runtime error occurs on the line which consists @ symbol at the beginning, 
+then the error will be handled by PHP.
+
+
+Method Names	Return types	Condition of calling
+__construct()	NaN	
+This method gets called automatically every time the object of a particular class is created.
+
+The function of this magic method is the same as the constructor in any OOP language.
+
+__destruct()	NaN	
+As the name suggests this method is called when the object is destroyed and no longer in use.
+
+
+Generally at the end of the program and end of the function.
+
+__call($name,$parameter) 	Not mandatory	This method executes when a method is called which is not defined yet.
+__toString()	String	
+This method is called when we need to convert the object into a string. 
+
+For example:   echo $obj;
+
+The $obj->__toString(); will be called magically.
+
+__get($name)	NaN	This method is called when an inaccessible variable or non-existing variable is used.
+__set($name , $value)	NaN	This method is called when an inaccessible variable or non-existing variable is written.
+__debugInfo()	array	This magic method is executed when an object is used inside var_dump() for debugging purposes.
+
+
+for($i =1; $i <= $length; $i++){
+  for ($j = 1; $j <= $length-1;$J++) {
+    echo "&nbsp;&nbsp;";
+  }
+  for($k= 1; $k <= $i; $k++){
+    echo "*&nbsp;&nbsp;";
+  }
+  echo "<br />";
+}
+
+
+$cars = array("Volvo", "BMW", "Toyota");
+sort($cars);
+rsort($cars);
+ksort($cars);
+
+$age = array("Peter"=>"35", "Ben"=>"37", "Joe"=>"43");
+asort($age);
+
+
+design patterns
+
+Singleton
+A Class has one instance, It provides a global access point to it, Following code will explain about singleton concept.
+
+Factory
+A Class Simple Creates the object and you want to use that object, Following example will explain about factory design pattern.
+
+Strategy pattern
+Strategy pattern makes a family algorithm and encapsulates each algorithm. Here each algorithm should be inter-changeable within the family.
+
+displaying form blob 
+bind params to string
+echo '<img src="data:image/jpeg;base64,'.base64_encode($row['image']).'"/>';
+
+
+select * from ((select * from Employee 
+       ORDER BY `sal` DESC limit 6 ) AS T) 
+       ORDER BY T.`sal` ASC limit 1;
+
+type hinting
+
+Type hinting is a concept that provides hints to function for the expected data type of arguments.
+
+For example, If we want to add an integer while writing the add function, we had mentioned the data type (integer in this case) of the parameter.
+While calling the function we need to provide an argument of integer type only.
+If you provide data of any other type,
+it will throw an error with clear instructions that the value of an integer type is needed.
+
+Advantages of type hinting:
+
+Type hinting helps users debug the code easily or the code provides errors very specifically.
+It is a great concept for static kind of programming/data.
+
+
+
+Single Responsibility principle -  this principle’s purpose is to have a single responsibility for a class/module.
+In other words, we can say that the class or module should solve one and
+only one problem So it should have a single reason to change.
+
+
+Open/Closed principle - his principle purpose that existed and well-tested class should not be modified when a new feature needs to be built. It may introduce a new bug when we modify an existing class to make a new feature.
+
+Liskov Substitution principle -  This principle is named after the name of Barbara Liskov. She introduced this principle in 1987. The concept states that a subtype must be substitutable to base types without breaking the behavior.
+It is a particular definition of subtyping relation, called behavioral subtyping.
+
+Interface Segregation principle -  This principle states that an interface should not enforce unwanted methods to a class
+
+Dependency Inversion principle. - According to this principle higher level classes should not directly depend on lower level classes but abstractions.
+It means that a higher level class should not need to know the implementation details of the low-level class, the low-level class should be hidden behind an abstraction.
+
+Singleton Pattern
+In order to limit the instantiation of a class to a single object, a singleton pattern in PHP is used. This can be useful when only one object is needed across the system
+
+Observer Pattern in PHP
+The PHP Observer pattern is used to alert the rest of the system about particular events in certain places.
+
+Decorator Pattern for PHP
+The Decorator pattern is used when you want to alter the character of an object at run-time, and with that, reduce unnecessary inheritances and the number of classes.
